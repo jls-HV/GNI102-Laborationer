@@ -1,177 +1,346 @@
 # GNI102 – Lab 1: Introduction to Cisco Packet Tracer
 
-This lab introduces fundamental network simulation using Cisco Packet Tracer. You will construct a small routed network consisting of a router, switches, end-user PCs, and servers, followed by IP configuration and basic network device hardening.
+This laboratory assignment introduces fundamental network simulation in Cisco Packet Tracer. You will assemble a switched and routed topology, configure host addressing, establish IP routing parameters, and apply basic Cisco IOS hardening techniques.
 
 ---
 
 ## Prerequisites
 
-1. **Host Login:** Log in to the lab computer using the username `cisco` and password `cisco`.
-2. **Profile Picture:** Ensure that you have uploaded a profile picture to Canvas ([hv.instructure.com](https://hv.instructure.com/)). This will be verified by an instructor during checkout.
-3. **Launch Packet Tracer:** Open **Cisco Packet Tracer** and sign in with your Cisco Networking Academy account.
+Before starting the lab, complete the following initial steps:
+
+1. **Workstation Access:**
+   - Log in to the host machine using the following local credentials:
+     - **Username:** `cisco`
+     - **Password:** `cisco`
+
+2. **Canvas Profile Verification:**
+   - Confirm that your personal photo is uploaded to [hv.instructure.com](https://hv.instructure.com/).
+   - *Note: This will be checked by the instructor during final sign-off.*
+
+3. **Packet Tracer Authentication:**
+   - Launch **Cisco Packet Tracer**.
+   - Authenticate with your **Cisco Networking Academy** credentials.
 
 ---
 
 ## 1. Network Topology
 
-Build the network topology as shown in the diagram and tables below.
+Build and cable the network topology according to the diagram and specifications below.
 
 ![Network Topology](images/topology.png)
 
-### Device Inventory
-Select and place the following devices from the bottom-left equipment menu:
-* **Router:** 1 × Cisco `2811` (placed at the top-center)
-* **Switches:** 2 × Cisco `2960-24TT` (`Switch-Left` and `Switch-Right`)
-* **End Devices (Clients):** 2 × `PC-PT` (`PC-Left` and `PC-Right`)
-* **End Devices (Servers):** 2 × `Server-PT` (`Server-Left` and `Server-Right`)
+### Equipment Selection
+Locate and place the following hardware components from the bottom-left device tray:
 
-### Cabling (Copper Straight-Through)
-Interconnect all devices using Copper Straight-Through cables:
+* **Router:**
+  - `1×` **Cisco 2811 Integrated Services Router** (place centered at the top)
+* **Switches:**
+  - `2×` **Cisco Catalyst 2960-24TT** (`Switch-Left` and `Switch-Right`)
+* **End Devices:**
+  - `2×` **PC-PT** (`PC-Left` and `PC-Right`)
+  - `2×` **Server-PT** (`Server-Left` and `Server-Right`)
 
-| From Device | Interface | To Device | Interface |
+### Cabling Specifications
+Connect the devices using standard **Copper Straight-Through** patch cables:
+
+| Source Device | Source Interface | Destination Device | Destination Interface |
 | :--- | :--- | :--- | :--- |
-| **PC-Left** | FastEthernet0 | **Switch-Left** | FastEthernet0/1 |
-| **Server-Left** | FastEthernet0 | **Switch-Left** | FastEthernet0/2 |
-| **PC-Right** | FastEthernet0 | **Switch-Right** | FastEthernet0/1 |
-| **Server-Right** | FastEthernet0 | **Switch-Right** | FastEthernet0/2 |
-| **Switch-Left** | FastEthernet0/24 | **MainRouter** | FastEthernet0/0 |
-| **Switch-Right** | FastEthernet0/24 | **MainRouter** | FastEthernet0/1 |
+| `PC-Left` | `FastEthernet0` | `Switch-Left` | `FastEthernet0/1` |
+| `Server-Left` | `FastEthernet0` | `Switch-Left` | `FastEthernet0/2` |
+| `PC-Right` | `FastEthernet0` | `Switch-Right` | `FastEthernet0/1` |
+| `Server-Right` | `FastEthernet0` | `Switch-Right` | `FastEthernet0/2` |
+| `Switch-Left` | `FastEthernet0/24` | `MainRouter` | `FastEthernet0/0` |
+| `Switch-Right` | `FastEthernet0/24` | `MainRouter` | `FastEthernet0/1` |
 
 ---
 
-## 2. Basic IP Configuration
+## 2. Basic Device Configuration (GUI)
 
-Configure device names and addressing using the **Config** tab on each respective device:
+Apply the following network parameters using the **Config** tab on each respective device.
 
-| Device | Display / Hostname | Interface | IP Address | Subnet Mask | Default Gateway |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Router** | `MainRouter` | Fa0/0 | `192.168.1.1` | `255.255.255.0` | — |
-| | | Fa0/1 | `192.168.2.1` | `255.255.255.0` | — |
-| **Switch Left** | `Switch-Left` | — | — | — | — |
-| **Switch Right** | `Switch-Right` | — | — | — | — |
-| **PC Left** | `PC-Left` | Fa0 | `192.168.1.10` | `255.255.255.0` | `192.168.1.1` |
-| **Server Left** | `Server-Left` | Fa0 | `192.168.1.100` | `255.255.255.0` | `192.168.1.1` |
-| **PC Right** | `PC-Right` | Fa0 | `192.168.2.10` | `255.255.255.0` | `192.168.2.1` |
-| **Server Right**| `Server-Right` | Fa0 | `192.168.2.100` | `255.255.255.0` | `192.168.2.1` |
+### Addressing & Naming Table
 
-> **Note:** Ensure that you enable the router interfaces by checking the **On** box (*Port Status*) for both `Fa0/0` and `Fa0/1`.
+| Device | Display Name | Hostname | Interface | IP Address | Subnet Mask | Default Gateway |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Router** | `MainRouter` | `MainRouter` | `Fa0/0` | `192.168.1.1` | `255.255.255.0` | *N/A* |
+| | | | `Fa0/1` | `192.168.2.1` | `255.255.255.0` | *N/A* |
+| **Switch Left** | `Switch-Left` | `Switch-Left` | *N/A* | *N/A* | *N/A* | *N/A* |
+| **Switch Right** | `Switch-Right` | `Switch-Right` | *N/A* | *N/A* | *N/A* | *N/A* |
+| **PC Left** | `PC-Left` | — | `Fa0` | `192.168.1.10` | `255.255.255.0` | `192.168.1.1` |
+| **Server Left** | `Server-Left` | — | `Fa0` | `192.168.1.100` | `255.255.255.0` | `192.168.1.1` |
+| **PC Right** | `PC-Right` | — | `Fa0` | `192.168.2.10` | `255.255.255.0` | `192.168.2.1` |
+| **Server Right**| `Server-Right`| — | `Fa0` | `192.168.2.100` | `255.255.255.0` | `192.168.2.1` |
 
----
+### Step-by-Step GUI Instructions
 
-## 3. Verifying Connectivity
+#### Router Configuration:
+1. Click `MainRouter` and open the **Config** tab.
+2. Under **Global Settings**, set both **Display Name** and **Hostname** to:
+   ```text
+   MainRouter
+   Under INTERFACE, select FastEthernet0/0:
 
-1. Click on **PC-Left**, navigate to the **Desktop** tab, and open the **Command Prompt**.
-2. Verify ICMP reachability to the server on the opposite subnet:
-   ```cmd
-   ping 192.168.2.100
+IP Configuration: 192.168.1.1
 
-   (The first ping packet may time out while ARP resolves; repeat the command to verify 100% success).
-3. Close the Command Prompt and open the Web Browser on PC-Left.
-4. Enter the URL: http://192.168.2.100/. Verify that the Cisco Packet Tracer welcome web page displays successfully.
+Subnet Mask: 255.255.255.0
+
+Port Status: Check the On box.
+
+Under INTERFACE, select FastEthernet0/1:
+
+IP Configuration: 192.168.2.1
+
+Subnet Mask: 255.255.255.0
+
+Port Status: Check the On box.
+
+Switches Configuration:
+Click Switch-Left → Config tab → set Display Name and Hostname to:
+
+Plaintext
+
+
+Switch-Left
+Click Switch-Right → Config tab → set Display Name and Hostname to:
+
+Plaintext
+
+
+Switch-Right
+Hosts (PC & Server) Configuration:
+Click the device and select the Config tab.
+
+Under Global Settings, configure:
+
+Display Name: Enter host name (e.g. PC-Left, Server-Right)
+
+Gateway IPv4: Enter the corresponding router interface IP (192.168.1.1 or 192.168.2.1).
+
+Under INTERFACE, select FastEthernet0:
+
+IP Configuration: Enter the host IP address from the table above.
+
+Subnet Mask: 255.255.255.0
+
+Port Status: Verify that On is checked.
+
+3. Connectivity Verification
+Verify end-to-end IP communication across the router:
+
+A. ICMP Verification (Ping)
+Click PC-Left → select the Desktop tab → open Command Prompt.
+
+Ping the server situated on the remote subnet:
+
+DOS
+
+
+ping 192.168.2.100
+Note: The first ICMP echo request may time out during initial ARP resolution. Run the command a second time to ensure four successful replies (0% packet loss).
+
+B. HTTP Application Verification
+On PC-Left, close the Command Prompt and open Web Browser from the Desktop tab.
+
+In the URL field, navigate to:
+
+Plaintext
+
+
+[http://192.168.2.100/](http://192.168.2.100/)
+Confirm that the default Cisco Packet Tracer web page loads successfully.
 
 4. Security & Device Hardening (CLI)
-Perform device security hardening using the CLI tab.
+Perform device security configurations directly in the Cisco IOS Command Line Interface (CLI tab).
 
-A. Console and Privileged EXEC Passwords (Router)
-1. Open the CLI on MainRouter.
-2. Enter privileged EXEC and global configuration mode:
+A. Console & Privileged EXEC Passwords (Router)
+Open the CLI tab on MainRouter and enter Privileged EXEC mode:
+
+Kodavsnitt
+
+
 enable
 configure terminal
+Secure physical console line access:
 
-3. Secure console line access with the password cisco:
+Kodavsnitt
+
+
 line console 0
  password cisco
  login
  exit
-4. Secure privileged EXEC mode with the password secure:
+Secure privileged EXEC access:
+
+Kodavsnitt
+
+
 enable password secure
-5. Test your configuration by entering exit repeatedly until logged out completely. Re-authenticate using the console password (cisco), enter privileged mode using enable, and supply the enable password (secure).
+exit
+Test the credentials:
 
-B. Secure the Switches
-Repeat the exact same password setup on both Switch-Left and Switch-Right using cisco (console) and secure (enable).
+Execute exit until returned to the initial login prompt (MainRouter con0 is now available).
 
+Press Enter, authenticate using console password: cisco.
+
+Issue enable, authenticate using privileged password: secure.
+
+B. Switch Hardening
+Repeat the password configuration on both Switch-Left and Switch-Right:
+
+Kodavsnitt
+
+
+enable
+configure terminal
+line console 0
+ password cisco
+ login
+ exit
+enable password secure
+exit
 C. System Clock Configuration
-Manually set the system clock in privileged EXEC mode (#). Use the CLI context-sensitive help (?) to verify the syntax:
+Manually set the hardware clock in Privileged EXEC mode (#) on all three devices. Use the context-sensitive help (?) to verify parameter formatting:
+
+Kodavsnitt
+
+
 clock set hh:mm:ss DD Month YYYY
+Example command:
 
-Verify the timestamp:
+Kodavsnitt
+
+
+clock set 10:15:00 2 September 2026
+Verify that the updated timestamp is registered:
+
+Kodavsnitt
+
+
 show clock
+D. Password Encryption Service
+By default, Cisco IOS stores simple passwords in cleartext within the active configuration. Enable service encryption on all devices:
 
-D. Password Encryption
-By default, some passwords appear as cleartext in the configuration file. Enable service encryption in global configuration mode:
+Kodavsnitt
+
+
 configure terminal
 service password-encryption
 exit
+Verify that plain-text passwords have been replaced with type-7 hashes:
 
-Apply this command across MainRouter, Switch-Left, and Switch-Right. Verify using show running-config.
+Kodavsnitt
 
-E. Login Banner (MOTD)
-Configure a legal warning banner displayed prior to login:
+
+show running-config
+E. Message-of-the-Day (MOTD) Banner
+Configure a legal warning banner displayed prior to user authentication:
+
+Kodavsnitt
+
+
 configure terminal
 banner motd # Authorized Access Only! Violators will be prosecuted. #
 exit
-
-F. Interface Descriptions
-Label all active interfaces with descriptive notes.
+F. Interface Documentation (Descriptions)
+Assign descriptive labels identifying connected endpoints on all active interfaces.
 
 MainRouter:
+Kodavsnitt
+
+
+configure terminal
 interface FastEthernet 0/0
  description Link to Switch-Left
 interface FastEthernet 0/1
  description Link to Switch-Right
+exit
+Switch-Left:
+Kodavsnitt
 
- Switch-Left:
- interface FastEthernet 0/1
+
+configure terminal
+interface FastEthernet 0/1
  description Link to PC-Left
 interface FastEthernet 0/2
  description Link to Server-Left
 interface FastEthernet 0/24
  description Uplink to MainRouter Fa0/0
+exit
+Switch-Right:
+Kodavsnitt
 
- Switch-Right:
- interface FastEthernet 0/1
+
+configure terminal
+interface FastEthernet 0/1
  description Link to PC-Right
 interface FastEthernet 0/2
  description Link to Server-Right
 interface FastEthernet 0/24
  description Uplink to MainRouter Fa0/1
+exit
+G. Save Active Configuration
+Commit the running configuration from volatile RAM to non-volatile memory (NVRAM) across all three network devices:
 
- G. Save Configuration
-Commit the active configuration to NVRAM across all three network devices:
+Kodavsnitt
+
+
 copy running-config startup-config
+(Press Enter to confirm the default destination filename [startup-config]).
 
-(Press Enter to confirm the destination filename).
+Verify that the configuration is written to storage:
 
+Kodavsnitt
+
+
+show startup-config
 5. Lab Questions
-Answer the following questions as part of your lab evaluation:
+Document the answers to the following questions as part of your lab review:
 
-IOS Image Filename: What is the exact filename of the router's IOS image?
+IOS Image Filename:
 
-(Hint: Use show version on MainRouter).
+What is the exact image file name of the operating system running on MainRouter?
 
-Interface MAC Address: What is the MAC address assigned to router interface FastEthernet0/0?
+Command clue:
 
-(Hint: Use show interfaces FastEthernet 0/0).
+Kodavsnitt
 
-Flash Image Size: What is the size of the IOS image in flash memory, measured in bytes?
 
-(Hint: Use show flash:).
+show version
+Hardware MAC Address:
 
+What MAC address is assigned to the router's FastEthernet0/0 interface?
+
+Command clue:
+
+Kodavsnitt
+
+
+show interfaces FastEthernet 0/0
+Flash Memory Size:
+
+How large is the router's IOS binary image file, specified in bytes?
+
+Command clue:
+
+Kodavsnitt
+
+
+show flash:
 6. Verification & Sign-off Checklist
-Have an instructor verify the following items prior to completing the lab:
+Before requesting evaluation, ensure that all criteria are met:
 
-[ ] Profile photo uploaded to Canvas (hv.instructure.com).
+[ ] Canvas profile picture is verified (hv.instructure.com).
 
-[ ] Web access verified: HTTP session to Server-Right operates from PC-Left.
+[ ] End-to-end HTTP access from PC-Left to http://192.168.2.100/ succeeds.
 
-[ ] Passwords enforced on console and privileged EXEC modes across all devices.
+[ ] Console login is protected by password cisco.
 
-[ ] System clock set and verified via show clock on all network equipment.
+[ ] Privileged EXEC mode (enable) is protected by password secure.
 
-[ ] show running-config contains no plain-text passwords.
+[ ] System clock is set and verified via show clock on all network devices.
 
-[ ] All 8 active interfaces properly documented with descriptions.
+[ ] service password-encryption is active (no cleartext passwords in show run).
 
-[ ] Running configuration saved to startup-config.
+[ ] All 8 operational interfaces contain descriptive description tags.
 
-
+[ ] Configurations are permanently saved using copy running-config startup-config.
