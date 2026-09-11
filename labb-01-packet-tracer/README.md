@@ -11,7 +11,7 @@ Before starting the lab, complete the following initial steps:
 * **Workstation Access:**
   * Log in to the host machine using the following local credentials:
     * **Username:** `cisco`
-    * **Password:** `cisco`
+    * **Password:** `Network!337`
 * **Canvas Profile Verification:**
   * Confirm that your personal photo is uploaded to [hv.instructure.com](https://hv.instructure.com/).
   * *Note: This will be checked by the instructor during final sign-off.*
