@@ -480,7 +480,7 @@ You will issue commands to display the MAC addresses on a PC and a switch, and a
 
 ### Step 5: Analyze the MAC address for the PC-A NIC.
 
-Before you analyze the MAC address on PC-A, look at an example from a different PC NIC. You can issue the `ipconfig /all` command to view the MAC address of your NIC. An example screen output is shown below. When using the `ipconfig /all` command, notice that MAC addresses are referred to as physical addresses. > [!CAUTION] > Reading the MAC address from left to right, the first six hex digits refer to the vendor (manufacturer) of this device. These first six hex digits (3 bytes) are also known as the organizationally unique identifier (OUI). > This 3-byte code is assigned to the vendor by the IEEE organization.
+Before you analyze the MAC address on PC-A, look at an example from a different PC NIC. You can issue the `ipconfig /all` command to view the MAC address of your NIC. An example screen output is shown below. When using the `ipconfig /all` command, notice that MAC addresses are referred to as physical addresses. > [!CAUTION] Reading the MAC address from left to right, the first six hex digits refer to the vendor (manufacturer) of this device. These first six hex digits (3 bytes) are also known as the organizationally unique identifier (OUI). > This 3-byte code is assigned to the vendor by the IEEE organization.
 
 To find the manufacturer, use the keywords IEEE OUI standards to find an OUI lookup tool on the internet or navigate to `http://standards-oui.ieee.org/oui.txt` to find the registered OUI vendor codes. The last six digits are the NIC serial number assigned by the manufacturer.
 
