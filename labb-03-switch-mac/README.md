@@ -163,43 +163,60 @@ reload
 ---
 ---
 
-# Lab 3.2: View the Switch MAC Address Table
+# Lab 3.2 – View the Switch MAC Address Table
 
-## Topology
+## Background / Scenario
 
-<p align="center">
-  <img src="images/topology-3.2.png" alt="Lab 3.2 Topology" width="60%">
-</p>
+The purpose of a Layer 2 LAN switch is to deliver Ethernet frames to host devices on the local network[cite: 2]. The switch records host MAC addresses that are visible on the network, and maps those MAC addresses to its own Ethernet switch ports[cite: 2]. This process is called building the MAC address table[cite: 2]. When a switch receives a frame from a PC, it examines the frame’s source and destination MAC addresses[cite: 2]. The source MAC address is recorded and mapped to the switch port from which it arrived[cite: 2]. Then the destination MAC address is looked up in the MAC address table[cite: 2]. If the destination MAC address is a known address, then the frame is forwarded out of the corresponding switch port associated with that MAC address[cite: 2]. If the MAC address is unknown, then the frame is broadcasted out of all switch ports, except the one from which it came[cite: 2]. It is important to observe and understand the function of a switch and how it delivers data on the network[cite: 2]. The way a switch operates has implications for network administrators whose job it is to ensure secure and consistent network communication[cite: 2].
 
-## Addressing Table
+Switches are used to interconnect and deliver information to computers on local area networks[cite: 2]. Switches deliver Ethernet frames to host devices identified by network interface card MAC addresses[cite: 2].
 
-| Device | Interface | IP Address | Subnet Mask | Default Gateway |
-| :--- | :--- | :--- | :--- | :--- |
-| **S1** | `VLAN 1` | `192.168.1.11` | `255.255.255.0` | *N/A* |
-| **S2** | `VLAN 1` | `192.168.1.12` | `255.255.255.0` | *N/A* |
-| **PC-A** | `NIC` | `192.168.1.1` | `255.255.255.0` | *N/A* |
-| **PC-B** | `NIC` | `192.168.1.2` | `255.255.255.0` | *N/A* |
+In Part 1, you will build a multi-switch topology with a trunk linking the two switches[cite: 2]. In Part 2, you will ping various devices and observe how the two switches build their MAC address tables[cite: 2].
+
+> **Note:** The switches used are Cisco Catalyst 2960s with Cisco IOS Release 15.2(2) (lanbasek9 image)[cite: 2]. Other switches and Cisco IOS versions can be used[cite: 2]. Depending on the model and Cisco IOS version, the commands available and output produced might vary from what is shown in the labs[cite: 2].
+>
+> **Note:** Make sure that the switches have been erased and have no startup configurations[cite: 2]. If you are unsure contact your instructor[cite: 2].
 
 ---
 
-## Objectives
+## Required Resources
 
-* **Part 1:** Build and Configure the Network
-* **Part 2:** Examine the Switch MAC Address Table
+* 2 Switches (Cisco 2960 with Cisco IOS Release 15.2(2) lanbasek9 image or comparable)[cite: 2]
+* 2 PCs (Windows with terminal emulation program, such as PuTTY)[cite: 2]
+* Console cables to configure the Cisco IOS devices via the console ports[cite: 2]
+* Ethernet cables as shown in the topology[cite: 2]
+
+> **Note:** The Fast Ethernet interfaces on Cisco 2960 switches are autosensing and an Ethernet straight-through cable may be used between switches S1 and S2[cite: 2]. If using another model Cisco switch, it may be necessary to use an Ethernet crossover cable[cite: 2].
 
 ---
 
 ## Instructions
 
 ### Part 1: Build and Configure the Network
-1. Cable devices according to the topology (`F0/1` between switches, `F0/6` to **PC-A**, `F0/18` to **PC-B**).
-2. Configure IP parameters on PCs and Switch SVIs.
-3. Apply passwords: `cisco` (console/vty) and `class` (privileged EXEC).
+
+#### Step 1: Cable the network according to the topology[cite: 2].
+
+#### Step 2: Configure PC hosts[cite: 2].
+
+#### Step 3: Initialize and reload switches as necessary[cite: 2].
+
+#### Step 4: Configure basic settings for each switch[cite: 2].
+a. Configure device name as shown in the topology[cite: 2].  
+b. Configure IP address as listed in Addressing Table[cite: 2].  
+c. Assign `cisco` as the console and vty passwords[cite: 2].  
+d. Assign `class` as the privileged EXEC password[cite: 2].
+
+---
 
 ### Part 2: Examine the Switch MAC Address Table
 
-#### Step 1: Record Network Device MAC Addresses
-Open a command prompt on both PCs and record their physical addresses via `ipconfig /all`:
+A switch learns MAC addresses and builds the MAC address table, as network devices initiate communication on the network[cite: 2].
+
+#### Step 1: Record network device MAC addresses[cite: 2].
+
+a. Open a command prompt on PC-A and PC-B and type `ipconfig /all`[cite: 2].
+
+What are the Ethernet adapter physical addresses?[cite: 2]
 
 * **PC-A MAC Address:**  
   ______________________________________________________________________  
@@ -209,53 +226,112 @@ Open a command prompt on both PCs and record their physical addresses via `ipcon
   ______________________________________________________________________  
   ______________________________________________________________________
 
-Console into **S1** and **S2** and record the Burned-in Address (bia) via `show interface gi1/0/1` (or relevant trunk port):
+<br>
 
-* **S1 Gi1/0/1 (or F0/1) MAC Address:**  
+b. Console into switch S1 and S2 and type the `show interface gi1/0/1` command on each switch[cite: 2].
+
+On the second line of command output, what is the hardware addresses (or burned-in address [bia])?[cite: 2]
+
+* **S1 Gi1/0/1 MAC Address:**  
   ______________________________________________________________________  
   ______________________________________________________________________
 
-* **S2 Gi1/0/1 (or F0/1) MAC Address:**  
+* **S2 Gi 1/0/1 MAC Address:**  
   ______________________________________________________________________  
   ______________________________________________________________________
 
-#### Step 2: Display the MAC Address Table
-From privileged EXEC mode on **S2**, execute:
+<br>
+
+#### Step 2: Display the switch MAC address table[cite: 2].
+
+Console into switch S2 and view the MAC address table, both before and after running network communication tests with ping[cite: 2].
+
+a. Establish a console connection to S2 and enter privileged EXEC mode[cite: 2].  
+b. In privileged EXEC mode, type the `show mac address-table` command and press Enter[cite: 2].
+
 ```ios
-show mac address-table
+S2# show mac address-table
 ```
 
-* **Question:** What MAC addresses are recorded in the table, to which ports are they mapped, and to which devices do they belong?  
-  *Answer:*  
-  ______________________________________________________________________  
-  ______________________________________________________________________
+Even though there has been no network communication initiated across the network (i.e., no use of ping), it is possible that the switch has learned MAC addresses from its connection to the PC and the other switch[cite: 2].
 
-#### Step 3: Clear and Re-evaluate Dynamic Entries
-Clear dynamic entries and view the table:
+Are there any MAC addresses recorded in the MAC address table?[cite: 2]  
+______________________________________________________________________  
+______________________________________________________________________
+
+<br>
+
+What MAC addresses are recorded in the table? To which switch ports are they mapped and to which devices do they belong? Ignore MAC addresses that are mapped to the CPU[cite: 2].  
+______________________________________________________________________  
+______________________________________________________________________
+
+<br>
+
+If you had not previously recorded MAC addresses of network devices in Step 1, how could you tell which devices the MAC addresses belong to, using only the output from the `show mac address-table` command? Does it work in all scenarios?[cite: 2]  
+______________________________________________________________________  
+______________________________________________________________________
+
+<br>
+
+#### Step 3: Clear the S2 MAC address table and display the MAC address table again[cite: 2].
+
+a. In privileged EXEC mode, type the `clear mac address-table dynamic` command and press Enter[cite: 2].
+
 ```ios
-clear mac address-table dynamic
-show mac address-table
+S2# clear mac address-table dynamic
 ```
 
-* **Question:** Does the table contain any addresses immediately after clearing? What happens after 10–15 seconds?  
-  *Answer:*  
+b. Quickly type the `show mac address-table` command again[cite: 2].
+
+* Does the MAC address table have any addresses in it for VLAN 1? Are there other MAC addresses listed?[cite: 2]  
   ______________________________________________________________________  
   ______________________________________________________________________
 
-#### Step 4: Traffic Generation & ARP Verification
-1. On **PC-B**, check the ARP table:
-   ```cmd
-   arp -a
-   ```
-2. Ping **PC-A**, **S1**, and **S2** from **PC-B**.
-3. Check `show mac address-table` on **S2** again.
-4. Rerun `arp -a` on **PC-B**.
-
-* **Question:** Has the switch added additional dynamic MAC addresses after traffic generation? List the new additions:  
-  *Answer:*  
+* Wait 10 seconds, type the `show mac address-table` command, and press Enter[cite: 2]. Are there new addresses in the MAC address table?[cite: 2]  
   ______________________________________________________________________  
   ______________________________________________________________________
 
+<br>
+
+#### Step 4: From PC-B, ping the devices on the network and observe the switch MAC address table[cite: 2].
+
+a. From PC-B, open a command prompt and type `arp -a`[cite: 2].
+
+Not including multicast or broadcast addresses, how many device IP-to-MAC address pairs have been learned by ARP?[cite: 2]  
+______________________________________________________________________  
+______________________________________________________________________
+
+<br>
+
+b. From the PC-B command prompt, ping PC-A, S1, and S2[cite: 2].
+
+Did all devices have successful replies? If not, check your cabling and IP configurations[cite: 2].  
+______________________________________________________________________  
+______________________________________________________________________
+
+<br>
+
+c. From a console connection to S2, enter the `show mac address-table` command[cite: 2].
+
+Has the switch added additional MAC addresses to the MAC address table? If so, which addresses and devices?[cite: 2]  
+______________________________________________________________________  
+______________________________________________________________________
+
+<br>
+
+From PC-B, open a command prompt and retype `arp -a`[cite: 2].
+
+Does the PC-B ARP cache have additional entries for all network devices that were sent pings?[cite: 2]  
+______________________________________________________________________  
+______________________________________________________________________
+
+---
+
+## Reflection Question
+
+On Ethernet networks, data is delivered to devices by their MAC addresses[cite: 2]. For this to happen, switches and PCs dynamically build ARP caches and MAC address tables[cite: 2]. With only a few computers on the network this process seems fairly easy[cite: 2]. What might be some of the challenges on larger networks?[cite: 2]  
+______________________________________________________________________  
+______________________________________________________________________
 ---
 
 ## Clean-up (Lab 3.2)
