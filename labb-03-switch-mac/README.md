@@ -8,8 +8,8 @@ This lab series covers the fundamentals of Cisco Layer 2 Catalyst switches, the 
 
 ## Topology
 
-![Lab 3.1 Topology]<p align="center">
-  <img src="images/topology-3.1.png" alt="Lab 3.1 Topology" width="60%">
+<p align="center">
+  <img src="images/topology-3.1.png" alt="Lab 3.1 Topology" width="50%">
 </p>
 
 ## Addressing Table
