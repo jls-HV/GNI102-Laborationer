@@ -100,6 +100,57 @@ show ip interface brief
   *Is the ping successful? (Yes/No):*  
   ______________________________________________________________________
 
+## Reflection Questions
+
+Check the appendix and compare your configuration. Did you do anything differently?[cite: 2]
+
+*Answer:*  
+______________________________________________________________________  
+______________________________________________________________________
+
+---
+
+## Appendix A
+
+```ios
+--- System Configuration Dialog ---
+
+Would you like to enter the initial configuration dialog? [yes/no]: no
+
+
+Press RETURN to get started!
+
+
+Switch>enable
+Switch#clock set 09:15:00 21 SEP 2024
+Switch#configure terminal
+Enter configuration commands, one per line. End with CNTL/Z.
+Switch(config)#hostname SX (X =number of your Switch)
+SX(config)#no ip domain lookup
+SX(config)#enable password class
+SX(config)#banner motd # UNAUTHORIZED ACCESS FORBIDDEN! #
+SX(config)#service password-encryption
+SX(config)#line console 0
+SX(config-line)#password cisco
+SX(config-line)#login
+SX(config-line)#interface vlan 1
+SX(config-if)#ip address 192.168.1.X 255.255.255.0
+SX(config-if)#no shutdown
+SX(config-if)#description Link to MANAGEMENT
+SX(config-if)#interface G1/0/10
+SX(config-if)#description Link to SX
+S1(config-if)#interface G1/0/05
+S1(config-if)#description Link to PC-A
+S2(config-if)#interface G1/0/15
+S2(config-if)#description Link to PC-B
+S1#copy running-config startup-config
+filename [startup-config]?
+Building configuration... [OK]
+SX#show clock
+SX#show running-config
+SX#show version
+SX#show ip interface brief
+```
 ---
 
 ## Clean-up (Lab 3.1)
