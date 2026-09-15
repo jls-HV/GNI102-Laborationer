@@ -80,8 +80,6 @@ b. Confirm your configuration on both switches by doing the following steps:
    3) Display IOS version.
    4) Display status of the connected interfaces on the switch.
 
-*(Repeat configuration on **S2** using hostname `S2`, IP address `192.168.1.2`, and port description for **PC-B** on `Gi1/0/15`)*.
-
 ### Step 4: Verification and Connectivity Tests
 Execute the verification commands:
 ```ios
@@ -90,6 +88,8 @@ show running-config
 show version
 show ip interface brief
 ```
+*(Repeat configuration on **S2** using hostname `S2`, IP address `192.168.1.2`, and port description for **PC-B** on `Gi1/0/15`)*.
+
 
 * **PC-A to PC-B Verification:** From **PC-A**, ping **PC-B** (`ping 192.168.1.11`).  
   *Is the ping successful? (Yes/No):*  
