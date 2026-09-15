@@ -165,6 +165,30 @@ reload
 
 # Lab 3.2 – View the Switch MAC Address Table
 
+## Topology
+
+<p align="center">
+  <img src="images/topology-3.2.png" alt="Lab 3.2 Topology" width="60%">
+</p>
+
+## Addressing Table
+
+| Device | Interface | IP Address | Subnet Mask | Default Gateway |
+| :--- | :--- | :--- | :--- | :--- |
+| **S1** | `VLAN 1` | `192.168.1.11` | `255.255.255.0` | *N/A* |
+| **S2** | `VLAN 1` | `192.168.1.12` | `255.255.255.0` | *N/A* |
+| **PC-A** | `NIC` | `192.168.1.1` | `255.255.255.0` | *N/A* |
+| **PC-B** | `NIC` | `192.168.1.2` | `255.255.255.0` | *N/A* |
+
+---
+
+## Objectives
+
+* **Part 1:** Build and Configure the Network
+* **Part 2:** Examine the Switch MAC Address Table
+
+---
+
 ## Background / Scenario
 
 The purpose of a Layer 2 LAN switch is to deliver Ethernet frames to host devices on the local network[cite: 2]. The switch records host MAC addresses that are visible on the network, and maps those MAC addresses to its own Ethernet switch ports[cite: 2]. This process is called building the MAC address table[cite: 2]. When a switch receives a frame from a PC, it examines the frame’s source and destination MAC addresses[cite: 2]. The source MAC address is recorded and mapped to the switch port from which it arrived[cite: 2]. Then the destination MAC address is looked up in the MAC address table[cite: 2]. If the destination MAC address is a known address, then the frame is forwarded out of the corresponding switch port associated with that MAC address[cite: 2]. If the MAC address is unknown, then the frame is broadcasted out of all switch ports, except the one from which it came[cite: 2]. It is important to observe and understand the function of a switch and how it delivers data on the network[cite: 2]. The way a switch operates has implications for network administrators whose job it is to ensure secure and consistent network communication[cite: 2].
