@@ -102,7 +102,7 @@ show ip interface brief
 
 ## Reflection Questions
 
-Check the appendix and compare your configuration. Did you do anything differently?[cite: 2]
+Check the appendix and compare your configuration. Did you do anything differently?
 
 *Answer:*  
 ______________________________________________________________________  
