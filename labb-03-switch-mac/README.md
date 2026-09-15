@@ -47,63 +47,69 @@ In this lab, you will build a simple network with two hosts and two switches. Yo
 
 ---
 
-## Step-by-Step Instructions
+# Lab - View Network Device MAC Addresses
 
-### Step 1: Cable the Network Topology
-1. Interconnect switch port `Gi1/0/10` on **S1** to `Gi1/0/10` on **S2**.
-2. Connect **PC-A** to port `Gi1/0/5` on **S1**.
-3. Connect **PC-B** to port `Gi1/0/15` on **S2**.
-4. Power on all hardware devices.
+## Instructions Part 1: Configure Devices and Verify Connectivity
 
-### Step 2: Configure Host Addressing
-Assign static IPv4 addresses and subnet masks to **PC-A** and **PC-B** according to the Addressing Table.
+In this part, you will set up the network topology and configure basic settings, such as the interface IP addresses and device name. For device name and address information, refer to the Topology and Addressing Table.
 
-### Step 3: Configure Basic Switch Settings
-Console into each switch and complete the baseline configurations without referring to the appendix if possible:
+### Step 1: Cable the network as shown in the topology.
 
-```ios
-enable
-clock set 09:15:00 21 SEP 2026
-configure terminal
-hostname S1
-no ip domain-lookup
-enable password class
-banner motd # UNAUTHORIZED ACCESS FORBIDDEN! #
-service password-encryption
-line console 0
- password cisco
- login
- exit
-interface vlan 1
- ip address 192.168.1.1 255.255.255.0
- no shutdown
- description Link to MANAGEMENT
- exit
-interface Gi1/0/10
- description Link to S2
-interface Gi1/0/5
- description Link to PC-A
-exit
-copy running-config startup-config
+a. Attach the devices shown in the topology and cable as necessary.  
+b. Power on all the devices in the topology.
+
+### Step 2: Configure the IPv4 address for the PC.
+
+a. Configure the IPv4 address, subnet mask, and default gateway address for PC-A.  
+b. From the command prompt on PC-A, ping the switch address.
+
+Were the pings successful? Explain.  
+______________________________________________________________________  
+______________________________________________________________________
+
+### Step 3: Configure basic settings for the switch.
+
+In this step, you will configure the device name and the IP address, and disable DNS lookup on the switch.
+
+a. Console into the switch and enter global configuration mode.
+   ```ios
+   Switch> enable
+   Switch# configure terminal
+   Enter configuration commands, one per line. End with CNTL/Z.
+   Switch(config)#
+   ```
+
+b. Assign a hostname to the switch based on the Addressing Table.
+   ```ios
+   Switch(config)# hostname S1
+   ```
+
+c. Disable DNS lookup.
+   ```ios
+   S1(config)# no ip domain-lookup
+   ```
+
+d. Configure and enable the SVI interface for VLAN 1.
+   ```ios
+   S1(config)# interface vlan 1
+   S1(config-if)# ip address 192.168.1.2 255.255.255.0
+   S1(config-if)# no shutdown
+   S1(config-if)# end
+   ```
+
+### Step 4: Verify network connectivity.
+
+Ping the switch from PC-A.
+
+Were the pings successful? Write down answer below .  
+______________________________________________________________________  
+______________________________________________________________________
+
+Every device on an Ethernet LAN has a MAC address that is assigned by the manufacturer and stored in the firmware of the NIC. Ethernet MAC addresses are 48-bits long. They are displayed using six sets of hexadecimal digits that are usually separated by dashes, colons, or periods. The following example shows the same MAC address using the three different notation methods:
+
+```text
+00-05-9A-3C-78-00    00:05:9A:3C:78:00    0005.9A3C.7800
 ```
-
-*(Repeat configuration on **S2** using hostname `S2`, IP address `192.168.1.2`, and port description for **PC-B** on `Gi1/0/15`)*.
-
-### Step 4: Verification and Connectivity Tests
-Execute the verification commands:
-```ios
-show clock
-show running-config
-show version
-show ip interface brief
-```
-
-* **PC-A to PC-B Verification:** From **PC-A**, ping **PC-B** (`ping 192.168.1.11`).  
-  *Is the ping successful? (Yes/No):*  
-  ______________________________________________________________________
-
-* **S1 to S2 Verification:** From **S1**, ping **S2** (`ping 192.168.1.2`).  
-  *Is the ping successful? (Yes/No):*  
   ______________________________________________________________________
 
 ---
