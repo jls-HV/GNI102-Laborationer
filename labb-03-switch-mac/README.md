@@ -62,7 +62,7 @@ Assign static IPv4 addresses and subnet masks to **PC-A** and **PC-B** according
 
 **Note:** Do the following steps <u>without</u> checking the appendix.
 
-a. Console into the switch. Do the following configuration **on both switches**:
+ Console into the switch. Do the following configuration **on both switches**:
    1) Set the **correct time** in privileged EXEC mode.
    2) Set correct hostname according to the Addressing Table in global configuration mode.
    3) Disable unwanted DNS lookups.
@@ -74,13 +74,14 @@ a. Console into the switch. Do the following configuration **on both switches**:
    9) Set descriptions on appropriate interfaces.
    10) Save the configuration.
 
-b. Confirm your configuration on both switches by doing the following steps:
+### Step 4: Verification and Connectivity Tests
+
+ Confirm your configuration on both switches by doing the following steps:
    1) Display current time.
    2) Display the current configuration.
    3) Display IOS version.
    4) Display status of the connected interfaces on the switch.
 
-### Step 4: Verification and Connectivity Tests
 Execute the verification commands:
 ```ios
 show clock
