@@ -58,34 +58,27 @@ In this lab, you will build a simple network with two hosts and two switches. Yo
 ### Step 2: Configure Host Addressing
 Assign static IPv4 addresses and subnet masks to **PC-A** and **PC-B** according to the Addressing Table.
 
-### Step 3: Configure Basic Switch Settings
-Console into each switch and complete the baseline configurations without referring to the appendix if possible:
+### Step 3: Configure and Verify Basic Switch Settings
 
-```ios
-enable
-clock set 09:15:00 21 SEP 2026
-configure terminal
-hostname S1
-no ip domain-lookup
-enable password class
-banner motd # UNAUTHORIZED ACCESS FORBIDDEN! #
-service password-encryption
-line console 0
- password cisco
- login
- exit
-interface vlan 1
- ip address 192.168.1.1 255.255.255.0
- no shutdown
- description Link to MANAGEMENT
- exit
-interface Gi1/0/10
- description Link to S2
-interface Gi1/0/5
- description Link to PC-A
-exit
-copy running-config startup-config
-```
+**Note:** Do the following steps <u>without</u> checking the appendix.
+
+a. Console into the switch. Do the following configuration **on both switches**:
+   1) Set the **correct time** in privileged EXEC mode.
+   2) Set correct hostname according to the Addressing Table in global configuration mode.
+   3) Disable unwanted DNS lookups.
+   4) Use **class** as privileged EXEC password.
+   5) Enter a login MOTD banner to warn unauthorized access.
+   6) Encrypt plain text passwords.
+   7) Use **cisco** as line console password.
+   8) Configure and enable the SVI according to the Addressing Table.
+   9) Set descriptions on appropriate interfaces.
+   10) Save the configuration.
+
+b. Confirm your configuration on both switches by doing the following steps:
+   1) Display current time.
+   2) Display the current configuration.
+   3) Display IOS version.
+   4) Display status of the connected interfaces on the switch.
 
 *(Repeat configuration on **S2** using hostname `S2`, IP address `192.168.1.2`, and port description for **PC-B** on `Gi1/0/15`)*.
 
