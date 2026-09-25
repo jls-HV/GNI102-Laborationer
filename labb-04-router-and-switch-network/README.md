@@ -38,17 +38,16 @@ After the devices have been configured and network connectivity has been verifie
 
 This lab provides minimal assistance with the actual commands necessary to configure the router. Test your knowledge by trying to configure the devices without referring to the content or previous activities.
 
-> **Note:** The routers used with CCNA hands-on labs are Cisco 4221 with Cisco IOS XE Release 16.9.4 (universalk9 image). The switches used in the labs are Cisco Catalyst 2960s with Cisco IOS Release 15.2(2) (lanbasek9 image). Other routers, switches, and Cisco IOS versions can be used. Depending on the model and Cisco IOS version, the commands available and the output produced might vary from what is shown in the labs.
+> **Note:** The routers used with CCNA hands-on labs are Cisco 4321 with Cisco IOS XE Release 16.9.4 (universalk9 image). The switches used in the labs are Cisco Catalyst 2960s with Cisco IOS Release 15.2(2) (lanbasek9 image). Other routers, switches, and Cisco IOS versions can be used. Depending on the model and Cisco IOS version, the commands available and the output produced might vary from what is shown in the labs.
 >
 > **Note:** Ensure that the routers and switches have been erased and have no startup configurations. Consult with your instructor for the procedure to initialize and reload a router and switch.
 >
-> **Note:** The default bias template used by the Switch Database Manager (SDM) does not provide IPv6 address capabilities. Verify that SDM is using either the `dual-ipv4-and-ipv6` template or the `lanbase-routing` template. The new template will be used after reboot even if the configuration is not saved.
 
 ---
 
 ## Required Resources
 
-* 1 Router (Cisco 4221 with Cisco IOS XE Release 16.9.4 universal image or comparable)
+* 1 Router (Cisco 4321 with Cisco IOS XE Release 16.9.4 universal image or comparable)
 * 1 Switch (Cisco 2960 with Cisco IOS Release 15.2(2) lanbasek9 image or comparable)
 * 2 PCs (Windows with a terminal emulation program, such as Tera Term)
 * Console cables to configure the Cisco IOS devices via the console ports
