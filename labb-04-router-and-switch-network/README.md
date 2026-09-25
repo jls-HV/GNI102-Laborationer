@@ -159,7 +159,7 @@ b. Use the `show ipv6 route` command on router R1 to display the IPv6 routes.
 
 #### Step 2: Display interface information on the router R1.
 
-a. Use the `show ip interface G0/0/1` command to answer the following questions:
+a. Use the `show interface G0/0/1` command to answer the following questions:
 
 * What is the operational status of the `G0/0/1` interface?  
   ______________________________________________________________________  
